@@ -1,4 +1,4 @@
-public class Magpie4
+public class Magpie5
 {
 
    private String transformIDisHappyStatement(String statement)
@@ -30,7 +30,7 @@ public class Magpie4
       }
       int position = findPhrase (statement, "i dislike", 0);
       String restOfStatement = statement.substring(position + 9);
-      return "What do you dislike about " + restOfStatement + "?";
+      return "What do you dislike about" + restOfStatement + "?";
     }
         
     
@@ -195,40 +195,20 @@ public class Magpie4
 
    /**
     * Pick a default response to use if nothing else fits.
-    * @return a non-committal string
+    * @return
     */
    private String getRandomResponse()
    {
-      final int NUMBER_OF_RESPONSES = 6;
+      String[] randomResponses = new String[6];
+      randomResponses[0] = "Interesting.";
+      randomResponses[1] = "Okay.";
+      randomResponses[2] = "I haven't heard that before.";
+      randomResponses[3] = "What else could you tell me about that?";
+      randomResponses[4] = "Where did you hear that?";
+      randomResponses[5] = "Please, go on.";
 
-      int whichResponse = (int)(Math.random() * NUMBER_OF_RESPONSES);
-      String response = "";
+      int randomIndex = (int)(Math.random() * 6);
 
-      if (whichResponse == 0)
-      {
-          response = "Interesting.";
-      }
-      else if (whichResponse == 1)
-      {
-         response = "Okay.";
-      }
-      else if (whichResponse == 2)
-      {
-         response = "I haven't heard that before.";
-      }
-      else if (whichResponse == 3)
-      {
-         response = "What else could you tell me about that?";
-      }   
-      else if (whichResponse == 4)
-      {
-         response = "Where did you hear that?";
-      } 
-      else if (whichResponse == 5)
-      {
-         response = "Please, go on.";
-      }
-
-     return response;
+      return randomResponses[randomIndex];
    }
 }
