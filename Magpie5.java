@@ -61,20 +61,27 @@ public class Magpie5
     *           you like to" and "with me"
     * @return the transformed statement
     */
-   private String transformWouldYouLikeStatement(String statement)
+private String transformWouldYouLikeStatement(String statement)
+{
+   if (findPhrase(statement, "with me", 0) == -1)
    {
-      String lastChar = statement.substring(statement.length() - 1);
-      if (lastChar.equals("?"))
-      {
-         statement = statement.substring(0, statement.length() - 1);
-      }
-      int position = findPhrase (statement, "Would you like", 0);
-      String restOfStatement = statement.substring(position + 15);
-      position = findPhrase(restOfStatement, "with me ", 0);
-      restOfStatement = restOfStatement.substring(0, position);
-      return "When would you like me" + restOfStatement +
-             " with you?";
+      return "When would you like to do that with me?";
    }
+
+   String lastChar = statement.substring(statement.length() - 1);
+   if (lastChar.equals("?"))
+   {
+      statement = statement.substring(0, statement.length() - 1);
+   }
+
+   int position = findPhrase(statement, "Would you like", 0);
+   String restOfStatement = statement.substring(position + 15);
+
+   position = findPhrase(restOfStatement, "with me", 0);
+   restOfStatement = restOfStatement.substring(0, position);
+
+   return "When would you like me " + restOfStatement + "with you?";
+}
 
 	
    /**
