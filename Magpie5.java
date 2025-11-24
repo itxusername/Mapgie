@@ -70,7 +70,7 @@ public class Magpie5
       }
       int position = findPhrase (statement, "Would you like", 0);
       String restOfStatement = statement.substring(position + 15);
-      position = findPhrase(restOfStatement, "with me", 0);
+      position = findPhrase(restOfStatement, "with me ", 0);
       restOfStatement = restOfStatement.substring(0, position);
       return "When would you like me" + restOfStatement +
              " with you?";
@@ -84,6 +84,18 @@ public class Magpie5
     */
    public String getResponse(String statement)
    {
+
+      String names = "Abby,Chinma,Jill,Kim,Marcus,Margaret,Rob,Tom,Travis";
+      String[] studentList = names.split(",");
+
+      int randomIndex = (int)(Math.random() * studentList.length);
+      String randomStudents = studentList[randomIndex];
+
+      if (statement.indexOf("Pollock") >= 0)
+      {
+         return "Oh, you’re in Mr. Pollock's class!  Do you know " + randomStudents + "?";
+      }
+
       String response = "";
       if (statement.indexOf("math") >= 0 || 
           statement.indexOf("science") >= 0)
@@ -99,7 +111,6 @@ public class Magpie5
          response = "That sounds yummy, tell me more.";
       }
         
-      // Responses which require transformations
        else if (findPhrase(statement, "I hate", 0) >= 0)
       {
          response = transformIDisHappyStatement(statement);
@@ -168,7 +179,7 @@ public class Magpie5
          // If before and after aren't letters, we've
          // found the word
          if (((before.compareTo("a") < 0) || 
-              (before.compareTo("z") > 0)) // before is not a letter
+              (before.compareTo("z") > 0)) 
                && ((after.compareTo("a") < 0) || 
                (after.compareTo("z") > 0)))
          {
